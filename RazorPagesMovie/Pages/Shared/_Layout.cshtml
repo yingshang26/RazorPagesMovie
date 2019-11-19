@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RazorPagesMovie</title>
+    <title>@ViewData["Title"] - Movie</title>
+    @* 切换到不同页面ViewData["Title"]属性都会变化 *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,7 +12,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Movies/Index">RpMovie</a>
+                @* asp-page="/Movies/Index" 标记帮助程序属性和值可以创建指向 /Movies/Index Razor 页面的链接。
+                    asp-area 属性值为空，因此在链接中未使用区域。 *@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,6 +35,8 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            @* RenderBody 是显示全部页面专用视图的占位符 *@
+            @* 例如，选择“隐私” 链接后，Pages/Privacy.cshtml 视图在 RenderBody 方法中呈现。 *@
         </main>
     </div>
 

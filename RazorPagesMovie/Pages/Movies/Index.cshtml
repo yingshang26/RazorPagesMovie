@@ -1,23 +1,37 @@
 ﻿@page
+@*@page  Razor 指令将文件转换为一个 MVC 操作，这意味着它可以处理请求。 @page  必须是页面上的第一个 Razor 指令*@
 @model RazorPagesMovie.Pages.Movies.IndexModel
+@*创建IndexModel实例*@
+@* @model 指令指定传递给 Razor 页面的模型类型。 
+   在前面的示例中，@model 行使 PageModel 派生的类可用于 Razor 页面。 
+    在页面上的 @Html.DisplayNameFor 和 @Html.DisplayFor 中使用该模型*@
 
+
+@* 前面突出显示的标记是 Razor 转换为 C# 的一个标记。 { 和 } 字符括住 C# 代码块。 *@
 @{
     ViewData["Title"] = "Index";
 }
+@* PageModel 基类（IndexModel派生自）包含 ViewData 字典属性，可用于将数据传递到某个视图。 
+    可以使用键/值模式将对象添加到 ViewData 字典。 在前面的示例中，"Title" 属性被添加到 ViewData 字典。 *@
+
+@* "Title" 属性用于 Pages/Shared/_Layout.cshtml 文件  *@
 
 <h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
+    @* 这里如何创建Create页面的？ *@
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Title)
+                @*DisplayNameFor HTML 帮助程序检查 Lambda 表达式中引用的 Title 属性来确定显示名称。 检查 Lambda 表达式（而非求值）*@
+                @* 这意味着当 model、model.Movie 或 model.Movie[0] 为 null 或为空时，不会存在任何访问冲突 *@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].ReleaseData)
+                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Genre)
@@ -29,26 +43,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Movie) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseData)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                    @* 对 Lambda 表达式求值时（例如，使用 @Html.DisplayFor(modelItem => item.Title)），将求得该模型的属性值。 *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

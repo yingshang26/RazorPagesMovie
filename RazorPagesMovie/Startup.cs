@@ -27,6 +27,9 @@ namespace RazorPagesMovie
         {
             services.AddRazorPages();
 
+            //ASP.NET Core 配置系统会读取 ConnectionString。 
+            //为了进行本地开发，它会从 appsettings.json 文件获取连接字符串 。
+            //将应用部署到测试或生产服务器时，可以使用环境变量将连接字符串设置为实际的数据库服务器。
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }

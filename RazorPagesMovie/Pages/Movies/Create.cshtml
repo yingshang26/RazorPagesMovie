@@ -12,16 +12,23 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            @* <form method="post"> 元素是一个表单标记帮助程序。 表单标记帮助程序会自动包含防伪令牌。 *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* 基架引擎在模型中为每个字段（ID 除外）创建 Razor 标记 *@
             <div class="form-group">
+                @* 标签标记帮助程序 (<label asp-for="Movie.Title" class="control-label"></label>) 
+                    生成标签描述和 Title 属性的 for 特性。 *@
                 <label asp-for="Movie.Title" class="control-label"></label>
+                @* 输入标记帮助程序 (<input asp-for="Movie.Title" class="form-control">) 
+                    使用 DataAnnotations 属性并在客户端生成 jQuery 验证所需的 HTML 属性。 *@
                 <input asp-for="Movie.Title" class="form-control" />
+                @* 验证标记帮助程序（<div asp-validation-summary 和 <span asp-validation-for）显示验证错误。  *@
                 <span asp-validation-for="Movie.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Movie.ReleaseData" class="control-label"></label>
-                <input asp-for="Movie.ReleaseData" class="form-control" />
-                <span asp-validation-for="Movie.ReleaseData" class="text-danger"></span>
+                <label asp-for="Movie.ReleaseDate" class="control-label"></label>
+                <input asp-for="Movie.ReleaseDate" class="form-control" />
+                <span asp-validation-for="Movie.ReleaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Movie.Genre" class="control-label"></label>

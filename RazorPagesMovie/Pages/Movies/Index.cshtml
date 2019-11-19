@@ -1,17 +1,18 @@
-﻿@page
-@*@page  Razor 指令将文件转换为一个 MVC 操作，这意味着它可以处理请求。 @page  必须是页面上的第一个 Razor 指令*@
+﻿@page "{searchString?}"
+@*@page  Razor 指令将文件转换为一个 MVC 操作，这意味着它可以处理请求。
+    @page  必须是页面上的第一个 Razor 指令。"{searchString?}"为路由模板*@
 @model RazorPagesMovie.Pages.Movies.IndexModel
 @*创建IndexModel实例*@
-@* @model 指令指定传递给 Razor 页面的模型类型。 
-   在前面的示例中，@model 行使 PageModel 派生的类可用于 Razor 页面。 
-    在页面上的 @Html.DisplayNameFor 和 @Html.DisplayFor 中使用该模型*@
+@* @model 指令指定传递给 Razor 页面的模型类型。
+    在前面的示例中，@model 行使 PageModel 派生的类可用于 Razor 页面。
+     在页面上的 @Html.DisplayNameFor 和 @Html.DisplayFor 中使用该模型*@
 
 
 @* 前面突出显示的标记是 Razor 转换为 C# 的一个标记。 { 和 } 字符括住 C# 代码块。 *@
 @{
     ViewData["Title"] = "Index";
 }
-@* PageModel 基类（IndexModel派生自）包含 ViewData 字典属性，可用于将数据传递到某个视图。 
+@* PageModel 基类（IndexModel派生自）包含 ViewData 字典属性，可用于将数据传递到某个视图。
     可以使用键/值模式将对象添加到 ViewData 字典。 在前面的示例中，"Title" 属性被添加到 ViewData 字典。 *@
 
 @* "Title" 属性用于 Pages/Shared/_Layout.cshtml 文件  *@
@@ -22,6 +23,20 @@
     <a asp-page="Create">Create New</a>
     @* 这里如何创建Create页面的？ *@
 </p>
+
+<form>
+    <p>
+        @* Genres没有使用模型绑点，所以要加上Model?貌似不是 *@
+        <select asp-for="MovieGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+            @* option增加了一项，显示为All，实际值为null或empty *@
+        </select>
+        Title:
+        <input type="text" asp-for="SearchString"/>
+        <input type="submit" value="Filter"/>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -64,7 +79,7 @@
                     <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                    @* 标记帮助程序使服务器端代码可以在 Razor 文件中参与创建和呈现 HTML 元素。 
+                    @* 标记帮助程序使服务器端代码可以在 Razor 文件中参与创建和呈现 HTML 元素。
                         在前面的代码中，AnchorTagHelper 从 Razor 页面（路由是相对的）、asp-page 和
                         路由 ID (asp-route-id) 动态生成 HTML href 特性值。 *@
                     @* 在最喜欢的浏览器中使用“查看源”来检查生成的标记 。 生成的 HTML 的一部分如下所示：

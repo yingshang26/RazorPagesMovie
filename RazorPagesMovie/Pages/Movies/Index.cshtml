@@ -31,7 +31,7 @@
                 @* 这意味着当 model、model.Movie 或 model.Movie[0] 为 null 或为空时，不会存在任何访问冲突 *@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+                @Html.DisplayNameFor(model => model.Movie[0].ReleaseData)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Genre)
@@ -51,7 +51,7 @@
                     @* 对 Lambda 表达式求值时（例如，使用 @Html.DisplayFor(modelItem => item.Title)），将求得该模型的属性值。 *@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    @Html.DisplayFor(modelItem => item.ReleaseData)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Genre)

@@ -54,42 +54,48 @@
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Rating)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Movie)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                    @* 对 Lambda 表达式求值时（例如，使用 @Html.DisplayFor(modelItem => item.Title)），将求得该模型的属性值。 *@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseData)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @* “编辑”、“详细信息”和“删除”链接是由定位标记帮助程序生成的  *@
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                    @* 标记帮助程序使服务器端代码可以在 Razor 文件中参与创建和呈现 HTML 元素。
-                        在前面的代码中，AnchorTagHelper 从 Razor 页面（路由是相对的）、asp-page 和
-                        路由 ID (asp-route-id) 动态生成 HTML href 特性值。 *@
-                    @* 在最喜欢的浏览器中使用“查看源”来检查生成的标记 。 生成的 HTML 的一部分如下所示：
-                        <td>
-                          <a href="/Movies/Edit?id=1">Edit</a> |
-                          <a href="/Movies/Details?id=1">Details</a> |
-                          <a href="/Movies/Delete?id=1">Delete</a>
-                        </td> *@
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+                @* 对 Lambda 表达式求值时（例如，使用 @Html.DisplayFor(modelItem => item.Title)），将求得该模型的属性值。 *@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseData)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @* “编辑”、“详细信息”和“删除”链接是由定位标记帮助程序生成的  *@
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                @* 标记帮助程序使服务器端代码可以在 Razor 文件中参与创建和呈现 HTML 元素。
+            在前面的代码中，AnchorTagHelper 从 Razor 页面（路由是相对的）、asp-page 和
+            路由 ID (asp-route-id) 动态生成 HTML href 特性值。 *@
+                @* 在最喜欢的浏览器中使用“查看源”来检查生成的标记 。 生成的 HTML 的一部分如下所示：
+            <td>
+              <a href="/Movies/Edit?id=1">Edit</a> |
+              <a href="/Movies/Details?id=1">Details</a> |
+              <a href="/Movies/Delete?id=1">Delete</a>
+            </td> *@
+            </td>
+        </tr>
         }
     </tbody>
 </table>

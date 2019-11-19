@@ -20,6 +20,8 @@ namespace RazorPagesMovie.Models
         [Column(TypeName ="decimal(18,2)")]//[Column(TypeName = "decimal(18, 2)")] 数据注释使 Entity Framework Core 可以将 Price 正确映射到数据库中的货币
         public decimal Price { get; set; }
 
+        public string Rating { get; set; }
+
 
     }
 }
